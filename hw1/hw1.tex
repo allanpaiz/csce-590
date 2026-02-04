@@ -1,0 +1,406 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+% ---- Header ----
+\newcommand{\hwcourse}{CSCE 590 - 002}
+\newcommand{\hwtitle}{Homework 1}
+\newcommand{\hwname}{Allan Paiz}
+\newcommand{\hwdate}{2/3/26}
+
+\newcommand{\makehwheader}{
+{\small
+\textbf{\hwcourse}\hfill \hwname\\
+\textbf{\hwtitle}\hfill \hwdate
+}
+\vspace{6pt}
+\hrule
+\vspace{10pt}
+}
+
+\newcommand{\problem}[1]{\vspace{1.5em}\textbf{Problem #1.}\ }
+% \newcommand{\problem}[1]{\vspace{6pt}\textbf{Problem #1.}\ \textit{Solution.}\ }
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+
+\begin{document}
+
+\makehwheader
+
+% ---- Solutions ----
+\section*{Part A}
+
+\problem{1} My attempt at the simplex table method for example 3 by hand.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth,height=15cm,keepaspectratio]{../MAX.png}
+    \caption{Simplex table method for example 3 by hand.}
+    \label{fig:a1}
+\end{figure}
+
+\newpage
+\problem{2} I used the SimplexSolver to solve example 3. 
+I couldn't figure out how to get the outputs of $s_1$ not to look like Figure 3.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.65\textwidth]{../pa2b.jpg}
+    \caption{Commands when running script generates Figure 3.}
+    \label{fig:a2}
+\end{figure}
+\vspace{1em}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.65\textwidth]{../pa2.jpg}
+    \caption{Final lines of script generated document.}
+    \label{fig:a3}
+\end{figure}
+
+
+\section*{Part B}
+\problem{1}
+We plot the following minimization problem:
+\[
+\begin{array}{rrl}
+	\min_{x_1,x_2} & f = -2x_1 - x_2 \\ 
+	\text{s.t.} & 2x_1 + \frac{8}{3}x_2 &\leq 4 \\
+				  & x_1 + x_2 &\leq 2 \\
+				  & 2x_1 &\leq 3 \\
+				  & x_1, x_2 &\geq 0
+\end{array}
+\]
+\vspace{-2em}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.65\textwidth]{../Figure_b1.png}
+    \caption{Minimization problem from example 3, lecture 1.}
+    \label{fig:b1}
+\end{figure}
+
+\problem{2} We plot the following minimization problem:
+\[
+\begin{array}{rrl}
+\min_{x, y} & f(x, y)=(x-a)^2+(y-b)^2 & \\
+\text { s.t. } & (x-8)^2+(y-9)^2 & \leq 49 \\
+& x+y & \leq 24 \\
+& 2 & \leq x \leq 13 \\
+\end{array}
+\]
+\vspace{-1.5em}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.65\textwidth]{../Figure_b2.png}
+    \caption{Minimization problem from example 7, lecture 1.}
+    \label{fig:b2}
+\end{figure}
+
+\problem{3} We plot the graph for $f(x) = 3x^4 - 4x^3 + 1$, visualizing the horizontal point of inflection. \\
+Let $f(x) = 3x^4 - 4x^3 + 1$, we want to solve $f'(x) = 0$.
+We find the first derivative of $f(x)$, $f'(x) = 12x^3 - 12x^2 = 12x^2(x-1)$, thus $x=0$ and $x=1$ are inflection points, we plot $x=0$.
+\vspace{-.5em}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.65\textwidth]{../Figure_b3.png}
+    \caption{Minimization problem from example 7, lecture 1.}
+    \label{fig:b3}
+\end{figure}
+
+\section*{Part C}
+
+\problem{1} Evaluate, using definitions of superposition principle and homogeneity, if the following functions are linear or nonlinear. \\ [1em]
+A function $f : \mathbb{R} \rightarrow \mathbb{R}$ is linear if $\forall x,y \in \mathbb{R}$ and scalars $a,b \in \mathbb{R}$, $f(ax + by) = af(x) + bf(y)$. \\
+That is, it must satisfy both:
+\vspace{-1em}
+\begin{enumerate}
+    \item \textbf{Superposition:} $f(x + y) = f(x) + f(y)$, $\forall x,y$.
+    \item \textbf{Homogeneity:} $f(\alpha x) = \alpha f(x)$, $\forall \alpha,x$.
+\end{enumerate}
+\vspace{1em}
+\text{} \quad \textbf{(a)} $f(x) = |x|$
+\begin{proof} We will show $f$ is not linear by counterexample.
+    Let $x = 1$ and $y=-1$, then $f(x+y) = |1+(-1)|=0$, but $f(x) + f(y) = |1| + |-1| = 2$.
+    Thus, $f(x + y) \neq f(x) + f(y)$ so we conclude $f$ is nonlinear.
+\end{proof}
+\text{} \quad \textbf{(b)} $f(x) = x^2 + 2x +2$
+\begin{proof} We will show $f$ is not linear by counterexample.
+    Let $x = 1$ and $y=-1$, then $f(x+y) = (0)^2 + 2(0) + 2 = 2$,
+    but $f(x) + f(y) = [(1)^2 + 2(1) + 2] + [(-1)^2 + 2(-1) + 2] = 5 + 1 = 6$.
+    Thus, $f(x + y) \neq f(x) + f(y)$ so we conclude $f$ is nonlinear.
+\end{proof}
+\text{} \quad \textbf{(c)} $f(x) = \frac{1}{x}$
+\begin{proof} We will show $f$ is not linear by counterexample.
+    Let $x = 1$ and $y = 2$, then $f(x+y) = \frac{1}{3}$, but $f(x) + f(y) = 1 + \frac{1}{2} = \frac{3}{2}$.
+    Thus, $f(x+y) \neq f(x) + f(y)$ so we conclude $f$ is nonlinear.
+\end{proof}
+\text{} \quad \textbf{(d)} $f(x,y) = \sin(xe^y)$
+\begin{proof} We will show $f$ is not linear by counterexample.
+	Let $x = 1$ and $y = 0$, and $\alpha = 2$ then $f(\alpha x, \alpha y) = f(2,0) = \sin(2e^0) = \sin(2)$ and $\alpha f(x,y) = 2f(1,0) = \sin(1e^0) = 2\sin(1)$.
+	Notice, homogeneity fails since $\sin(2) \neq 2\sin(1)$, thus $f(\alpha x, \alpha y) \neq \alpha f(x,y)$ so we conclude $f$ is nonlinear.
+\end{proof}
+\text{} \quad \textbf{(e)} $f(x,y) = \cos(x)y + x^2y$
+\begin{proof} We will show $f$ is not linear by counterexample.
+	Let $x = 1$ and $y = 2$, and $\alpha = 2$ then $f(\alpha x, \alpha y) = f(2,4) = 4\cos(2) + 16$ and $\alpha f(x,y) = 2f(1,2) = 2(2\cos(1) + 2) = 4\cos(1) + 4$.
+	Notice, homogeneity fails since $4\cos(2) + 16 \neq 4\cos(1) + 4$, thus $f(\alpha x, \alpha y) \neq \alpha f(x,y)$ so we conclude $f$ is nonlinear.
+\end{proof}
+
+\newpage
+\problem{2} Find the local and global minimizers and maximizers, if they exist, for the following functions: \\ [1em]
+\text{} \quad \textbf{(a)} $f(x) = x + \sin(x)$ \\ [1em]
+We begin by finding the first derivative of $f(x)$, $f'(x) = 1 + \cos(x)$, we want to find the critical points which satisfy $f'(x) = 0$.
+\[
+\begin{aligned}
+    f'(x) = 1 + \cos(x) \\
+          1 + \cos(x) &= 0 \\
+          \cos(x) &= -1 \\
+          x &= \pi.
+\end{aligned}
+\]
+Thus, $x = \pi$ is a critical point, more precisely $\forall x = k \pi,$ with $ k = (2m+1), m \in \mathbb{Z}$ are critical points.
+
+Next we perform the second derivative test on $f(x)$, $f''(x) = - \sin(x)$.
+Notice $\forall x = k \pi$, $f''(x) = - \sin(k \pi) = 0$, thus the second derivative test is inconclusive.
+
+We return to $f'(x) = 1 + \cos(x)$, we know $f'(x) = 0$ when $x = k \pi$.
+Notice $1 + \cos(x) \in [0,2]$ since $\cos(x) \in [-1,1]$, thus $1 + \cos(x) > 0$ for all $x > k \pi$.
+Since $f'(x)$ is increasing on both sides we conclude there is no local minimizer or maximizer.
+
+Now notice,
+\[ \lim_{x\to\infty} f(x) = \infty \quad \text{ and } \quad \lim_{x\to -\infty} f(x) = -\infty \]
+
+Thus we conclude $f(x)$ has no global minimizer or maximizer.
+
+\vspace{2em}
+\text{} \quad \textbf{(b)} $f(x) = (2x_1 - x_2)^2 +(x_2 - x_3)^2 + (x_3 - 1)^2 $ \\ [1em]
+We begin by finding the gradient of $f(x_1,x_2,x_3)$ and solving $\nabla f = 0$.
+\[
+\begin{aligned}
+f(x_1,x_2,x_3) &= (2x_1-x_2)^2 + (x_2-x_3)^2 + (x_3-1)^2,\\[0.5em]
+\frac{\partial f}{\partial x_1} &= 2(2x_1-x_2)\cdot 2 = 8x_1 - 4x_2,\\
+\frac{\partial f}{\partial x_2} &= 2(2x_1-x_2)(-1) + 2(x_2-x_3) = -4x_1 + 4x_2 - 2x_3,\\
+\frac{\partial f}{\partial x_3} &= 2(x_2-x_3)(-1) + 2(x_3-1) = -2x_2 + 4x_3 - 2. \\
+\nabla f(x_1,x_2,x_3) &=
+\begin{bmatrix}
+8x_1-4x_2\\
+-4x_1+4x_2-2x_3\\
+-2x_2+4x_3-2
+\end{bmatrix}.
+\end{aligned}
+\]
+
+We now solve $\nabla f = 0$,
+\[
+\begin{bmatrix}
+8x_1-4x_2\\
+-4x_1+4x_2-2x_3\\
+-2x_2+4x_3-2
+\end{bmatrix} x = [0, 0, 0] ^T \]
+
+Therefore $(x_1,x_2,x_3)=\left(\frac12,1,1\right)$ is a critical point.
+
+Next we perform the second derivative test using the Hessian.
+\[
+\nabla^2 f(x_1,x_2,x_3)=
+\begin{bmatrix}
+8 & -4 & 0\\
+-4 & 4 & -2\\
+0 & -2 & 4
+\end{bmatrix}.
+\]
+We check the leading principal minors,
+\[
+\Delta_1 = 8 > 0,
+\]
+\[
+\Delta_2 =
+\det\begin{bmatrix}8&-4\\-4&4\end{bmatrix}=32-16=16>0,\qquad
+\Delta_3 =
+\det\begin{bmatrix}8&-4&0\\-4&4&-2\\0&-2&4\end{bmatrix}= 96-64 =32>0.
+\]
+
+Thus $\nabla^2 f$ is positive definite, so $f$ is strictly convex and the critical point
+$\left(\frac12,1,1\right)$ is a strict local minimizer by Theorem 22 in the lectures.
+Hence $\left(\frac12,1,1\right)$ is also the unique global minimizer.
+
+Then, $f$ has no local or global maximizer, since $\nabla^2 f$ is positive definite, $f$ is convex so it has no local maxima by Theorem 16 in the lectures, and
+\[
+\lim_{x_1,x_2,x_3\to\infty} f(x_1,x_2,x_3)=\infty,
+\]
+so $f$ is unbounded above and has no global maximizer.
+
+\vspace{1em}
+\problem{3} Show that no matter what value of $a$ is chosen, the function
+$f(x_1,x_2) = x_{1}^{3} - 33ax_1 x_2 + x_{2}^{3}$ has no global maximizers.
+Determine the nature of the critical points of this function for all values of $a$.
+
+\vspace{0.5em}
+First, we show $f$ has no global maximizer $\forall a\in\mathbb{R}$.
+Let $x_2 = 0$ . Then $f(x_1,0)=x_1^3$, then as $x_1\to\infty$, $f(x_1,0) = \infty$.
+Thus $f$ has no global maximizer for any value of $a$.
+
+\vspace{0.75em}
+Next, we find the critical points by solving $\nabla f = 0$.
+\[
+\begin{aligned}
+f(x_1,x_2) &= x_1^3 - 33a x_1 x_2 + x_2^3,\\[0.25em]
+\frac{\partial f}{\partial x_1} &= 3x_1^2 - 33a x_2,\\
+\frac{\partial f}{\partial x_2} &= -33a x_1 + 3x_2^2. \\
+\nabla f(x_1,x_2) &=
+\begin{bmatrix}
+3x_1^2 - 33a x_2\\
+3x_2^2 - 33a x_1
+\end{bmatrix}.
+\end{aligned}
+\]
+We solve $\nabla f=0$,
+\[
+\begin{aligned}
+3x_1^2 - 33a x_2 &= 0,\\
+3x_2^2 - 33a x_1 &= 0.
+\end{aligned}
+\]
+
+If $a=0$, Then $f(x_1,x_2)=x_1^3+x_2^3$ and
+\[
+ \nabla f(x_1,x_2) = \begin{bmatrix}3x_1^2\\3x_2^2\end{bmatrix} x = \begin{bmatrix}0\\0\end{bmatrix}
+\;\text{, thus}\;\; x_1=0,\;x_2=0.
+\]
+So $(0,0)$ is the only critical point when $a=0$.
+Notice if $x_2=0$ we have $f(x_1,0)=x_1^3$, so $f(x_1, 0)$ can be positive or negative, thus $(0,0)$ is a saddle point when $a=0$.
+
+\vspace{1em}
+If $a\neq 0$. From $3x_1^2-33a x_2=0$ we get $x_2=\frac{x_1^2}{11a}.$ Substitute into $3x_2^2-33a x_1 = 3\left(\frac{x_1^2}{11a}\right)^2 - 33a x_1  = x_1\left(\frac{3x_1^3}{121a^2} - 33a\right)=0$.
+
+Thus, if $x_1=0$, then $x_2=0$, or $\left( \frac{3x_1^3}{121a^2} - 33a \right) = 0$ provides $x_1 = 11a$ and $x_2=11a$.
+
+So for $a\neq 0$ the critical points are $(0,0)$ and $(11a,11a)$.
+
+\vspace{0.75em}
+To classify the critical points we use the Hessian.
+\[
+\nabla^2 f(x_1,x_2)=
+\begin{bmatrix}
+6x_1 & -33a\\
+-33a & 6x_2
+\end{bmatrix}.
+\]
+
+At $(0,0)$,
+\[
+\nabla^2 f(0,0)=\begin{bmatrix}0 & -33a\\-33a & 0\end{bmatrix},\qquad
+\det(\nabla^2 f(0,0)) = 0 - (-33a)^2 = -1089a^2 < 0.
+\]
+Thus $(0,0)$ is a saddle point for $a\neq 0$ which follows as shown above.
+
+Then, at $(11a,11a)$,
+\[
+\nabla^2 f(11a,11a)=\begin{bmatrix}66a & -33a\\-33a & 66a\end{bmatrix},\qquad
+\det(\nabla^2 f(11a,11a)) = (66a)^2 - (-33a)^2 = 3267a^2 > 0.
+\]
+Since the determinant is positive, if $a>0$, then $66a>0$ and $(11a,11a)$ is a local minimizer. If $a<0$, then $66a<0$ and $(11a,11a)$ is a local maximizer.
+
+\problem{4} Find the critical points for $f(x_1, x_2) = x_{1}^{5} - x_1 x_{2}^{6}$.
+Is the critical point at origin, $(0,0)$, a local minimizer or maximizer?
+
+\vspace{0.5em}
+We begin by finding the gradient and solving $\nabla f = 0$.
+\[
+\begin{aligned}
+f(x_1,x_2) &= x_1^5 - x_1x_2^6,\\[0.25em]
+\frac{\partial f}{\partial x_1} &= 5x_1^4 - x_2^6,\\
+\frac{\partial f}{\partial x_2} &= -6x_1x_2^5.
+\end{aligned}
+\]
+Thus,
+\[
+\nabla f(x_1,x_2)=
+\begin{bmatrix}
+5x_1^4 - x_2^6\\
+-6x_1x_2^5
+\end{bmatrix}.
+\]
+We solve $\nabla f=0$:
+\[
+\begin{aligned}
+5x_1^4 - x_2^6 &= 0,\\
+-6x_1x_2^5 &= 0.
+\end{aligned}
+\]
+From $-6x_1x_2^5=0$, we have $x_1=0$ or $x_2=0$, by the zero product property.
+
+If $x_1=0$, then $-x_2^6 =0$, $x_2=0$. \\
+If $x_2=0$, then $5x_1^4=0$, $x_1=0$. Thus, $(0,0)$ is a unique critical point.
+
+\vspace{0.75em}
+Notice $f(0,0)=0$, then consider $f(x_1,0)=x_1^5.$
+For $x_1>0$, $f(x_1,0)>0$, and for $x_1<0$, $f(x_1,0)<0$.
+Thus, $(0,0)$ is neither a local minimizer or maximizer, it is a saddle point.
+
+
+\problem{5}
+
+\text{} \quad \textbf{(a)} Describe an example or scenario where you can incorporate optimization principles.
+
+An example can be minimizing the amount of interest paid on multiple balances with different interest rates.
+For example 3 credit cards, you must meet the minimum payments, on a fixed income/budget.
+To make it more in-depth you could also minimize the time to pay off the balances, also under a fixed income/budget.
+
+\vspace{0.4em}
+\text{} \quad \textbf{(b)}  State the described optimization problem similar to the examples (Ex 1,2,5,8) in Lecture 1 material by adding the information needed to formulate the optimization problem mathematically.
+
+Suppose there are 3 credit cards, each with different simple interest rates, current balance, and required minimum monthly payment.
+Each month $t$ the income is $P = \$1000$ which must be divided to pay off the 3 credit cards.
+Over a 12 month span the goal is to minimize the total amount of interest paid, under the constraints of monthly income and the minimum monthly payment due.
+For simplicity we are not concerned with paying off the balances, we will use the following:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Card ($i$) & Interest rate ($r$) & Balance $(b)$ & Minimum  ($m$) \\
+\hline
+A & 0.0208 & \$21,00 & 75 \\
+B & 0.0150 & \$15,000 & 65 \\
+C & 0.0104 & \$32,000 & 112 \\
+\hline
+\end{tabular}
+\end{center}
+
+Let $x_{i,t}$ denote the payment made to card $i$ in month $t$. 
+Let $b_{i,t}$ denote the balance each month by adding the interest and then subtracting the payment made. 
+The objective is to choose payments $\{x_{i,t}\}$ over 12 months to minimize total interest paid over the 12-month period, subject to monthly income and meeting each card's minimum payment.
+\vspace{0.6em}
+
+\vspace{0.6em}
+\text{} \quad \textbf{(c)} Formulate/Derive the mathematical model of the stated optimization problem.
+\[
+\begin{aligned}
+\min_{x_{i,t},\,b_{i,t}} \quad 
+& \sum_{t=1}^{12}\sum_{i=1}^{N} r_i\,b_{i,t} \\
+\text{s.t.}\quad
+& b_{i,t+1} = (1+r_i)b_{i,t} - x_{i,t}, && i=1,\dots,N,\;\; t=1,\dots,12,\\
+& \sum_{i=1}^{N} x_{i,t} \le P, && \\
+& x_{i,t} \ge m_i, && \\
+& x_{i,t}, b_{i,t} \ge 0. \\
+\end{aligned}
+\]
+
+\vspace {2em}
+\section*{Appendix}
+All files and code can be found \href{https://github.com/allanpaiz/csce-590/tree/main/hw1}{on Github}.
+
+\url{https://github.com/allanpaiz/csce-590/tree/main/hw1}
+
+\vspace {2em}
+\section*{Sources}
+\textbf{Use of AI} \quad During the completion of this assignment, I used ChatGPT 2.5 (OpenAI) as an assistive tool.
+I reviewed and edited all AI assisted outputs, and take full responsibility for the accuracy of my work. 
+
+\end{document}
